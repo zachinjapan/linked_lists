@@ -1,11 +1,7 @@
-import "./App.css";
-import Nav from "./Components/MuiNav/MuiNav";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Info from "./Components/Info/Info";
-import About from "./Components/About/About";
-import Feature from "./Components/Feature/Feature";
+import { Button } from "@mui/material";
+import { useEffect, useState } from "react";
 
-function App() {
+const Feature = (props) => {
   class LinkedList {
     constructor(head = null) {
       this.head = head;
@@ -106,19 +102,47 @@ function App() {
     }
   }
 
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <h1>Linked Lists Visualized</h1>
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Feature />} />
-          <Route path="/info" element={<Info />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
-}
+  let [myList, setMyList] = useState(new LinkedList());
+  let [length, setLength] = useState(0);
 
-export default App;
+  let [textVersion, setTextVersion] = useState("");
+
+  useEffect(() => {
+    let newText = JSON.stringify(myList);
+    setTextVersion(newText);
+  }, [length]);
+  return (
+    <div>
+      <div
+        className="list_container"
+        style={{
+          //   overflowY: "hidden",
+          //   overflowX: "auto",
+          width: "fit-content",
+          height: "fit-content",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <h1>{textVersion}</h1>
+      </div>
+      <div>
+        <Button
+          onClick={() => {
+            let newNode = new Node(2);
+            let newObject = myList;
+            newObject.addToTail(newNode);
+            setMyList(newObject);
+            setLength(length + 1);
+          }}
+        >
+          add node
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default Feature;

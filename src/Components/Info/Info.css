@@ -1,0 +1,23 @@
+.Info {
+  width: 100vw;
+  max-width: 100vw;
+  height: fit-content;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Info h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+
+.Info p {
+  font-size: 1.5rem;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
